@@ -5,7 +5,7 @@ import './index.css'
 
 class EbankLogIn extends Component {
   state = {
-    userid: '',
+    userId: '',
     pin: '',
     showErrorMessage: false,
     errorMessage: '',
@@ -13,7 +13,7 @@ class EbankLogIn extends Component {
 
   onChangeUserID = event => {
     console.log(event.target.value)
-    this.setState({userid: event.target.value})
+    this.setState({userId: event.target.value})
   }
 
   onChangePIN = event => {
@@ -34,10 +34,9 @@ class EbankLogIn extends Component {
   onFormSubmit = async event => {
     event.preventDefault()
 
-    const {userid, pin} = this.state
-    const userDetails = {userid, pin}
-
-    // const url = 'https://apis.ccbp.in/ebank/login'
+    const {userId, pin} = this.state
+    const userDetails = {userId, pin}
+    console.log(userDetails)
     const option = {
       method: 'POST',
       body: JSON.stringify(userDetails),
@@ -53,7 +52,7 @@ class EbankLogIn extends Component {
   }
 
   render() {
-    const {userid, pin, errorMessage, showErrorMessage} = this.state
+    const {userId, pin, errorMessage, showErrorMessage} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -75,7 +74,7 @@ class EbankLogIn extends Component {
               <br />
               <input
                 onChange={this.onChangeUserID}
-                value={userid}
+                value={userId}
                 className="input-field"
                 placeholder="Enter User ID"
                 type="text"
