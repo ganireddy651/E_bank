@@ -1,0 +1,38 @@
+.app-container {
+  background-color: #152850;
+  min-height: 100vh;
+  background-size: cover;
+  padding: 30px;
+}
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.logout-btn {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Roboto';
+  height: 35px;
+  width: 80px;
+}
+.heading-and-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
+.main-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 38px;
+  font-weight: 500;
+}
+.digital-card {
+  height: 250px;
+  width: 400px;
+}
