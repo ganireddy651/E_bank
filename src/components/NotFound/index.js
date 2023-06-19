@@ -1,12 +1,12 @@
-// import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 // import Cookies from 'js-cookie'
 import './index.css'
 
 const NotFound = () => (
-  // const jwtToken = Cookies.get("jwt_token")
+  //   const jwtToken = Cookies.get('jwt_token')
+  //   const {history} = props
   //   if (jwtToken === undefined) {
-  //     const {history} = props
-  //     history.replace("/ebank/login")
+  //     history.replace('/ebank/login')
   //   }
   <div className="notfound-container">
     <img
@@ -21,4 +21,4 @@ const NotFound = () => (
   </div>
 )
 
-export default NotFound
+export default withRouter(NotFound)

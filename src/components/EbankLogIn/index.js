@@ -5,18 +5,20 @@ import './index.css'
 
 class EbankLogIn extends Component {
   state = {
-    username: '',
-    password: '',
+    userid: '',
+    pin: '',
     showErrorMessage: false,
     errorMessage: '',
   }
 
   onChangeUserID = event => {
-    this.setState({username: event.target.value})
+    console.log(event.target.value)
+    this.setState({userid: event.target.value})
   }
 
   onChangePIN = event => {
-    this.setState({password: event.target.value})
+    console.log(event.target.value)
+    this.setState({pin: event.target.value})
   }
 
   onSuccessView = jwtToken => {
@@ -32,17 +34,16 @@ class EbankLogIn extends Component {
   onFormSubmit = async event => {
     event.preventDefault()
 
-    const {username, password} = this.state
-    const userDetails = {username, password}
+    const {userid, pin} = this.state
+    const userDetails = {userid, pin}
 
-    const url = 'https://apis.ccbp.in/ebank/login'
-    const options = {
+    // const url = 'https://apis.ccbp.in/ebank/login'
+    const option = {
       method: 'POST',
       body: JSON.stringify(userDetails),
     }
-    const response = await fetch(url, options)
+    const response = await fetch('https://apis.ccbp.in/ebank/login', option)
     const data = await response.json()
-    console.log(data)
 
     if (response.ok === true) {
       this.onSuccessView(data.jwt_token)
@@ -52,7 +53,7 @@ class EbankLogIn extends Component {
   }
 
   render() {
-    const {UserID, PIN, errorMessage, showErrorMessage} = this.state
+    const {userid, pin, errorMessage, showErrorMessage} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -74,7 +75,7 @@ class EbankLogIn extends Component {
               <br />
               <input
                 onChange={this.onChangeUserID}
-                value={UserID}
+                value={userid}
                 className="input-field"
                 placeholder="Enter User ID"
                 type="text"
@@ -82,17 +83,17 @@ class EbankLogIn extends Component {
               />
             </div>
             <div className="input-container">
-              <label className="label-text" htmlFor="userId">
+              <label className="label-text" htmlFor="password">
                 PIN
               </label>
               <br />
               <input
                 onChange={this.onChangePIN}
-                value={PIN}
+                value={pin}
                 className="input-field"
                 placeholder="Enter PIN"
-                type="text"
-                id="userId"
+                type="password"
+                id="password"
               />
             </div>
             <button className="login-button" type="submit">

@@ -4,8 +4,14 @@ import './index.css'
 
 const Home = props => {
   const {history} = props
+  const jwToken = Cookies.get('jwt_token')
+
   const onClickLogout = () => {
     Cookies.remove('jwt_token')
+    history.replace('/ebank/login')
+  }
+
+  if (jwToken === undefined) {
     history.replace('/ebank/login')
   }
 
